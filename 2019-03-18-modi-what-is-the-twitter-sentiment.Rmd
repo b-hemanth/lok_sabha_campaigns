@@ -190,5 +190,3 @@ temp_plot %>%
 
 ## A Final Developer's Note 
 Unfortunately, there seem to be no existing machine learning based APIs or CRAN packages to deal with Hindi Tweets, so I'm ignoring them. I considered translating and then analyzing, but this seems to have too broad a confidence interval and Google Translate API is too expensive for me. This obviously makes this analysis biased to some extent. Furthermore, even for English sentiment analysis, there is a non-zero margin of error. However, given my rather large sample size, this margin should be adjusted for. My analysis also does not account for paid tweets. So, the positive skew might be caused in some party by the BJP tech cell's tweeting. However, given that I scraped a mixed sample of popular and recent tweets and given that paid tweets are unlikely to be the most popular ones, this skew should be mitigated.
-
-You can look at the code (in R) in my GitHub (@b-hemanth) under my repository `my_page`.
