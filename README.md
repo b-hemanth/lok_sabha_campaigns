@@ -13,10 +13,16 @@ This is one of the largest social media campaigns and was announced just 3-4 day
 I scraped it myself wit the package `rtweet`. I used the following code:
  
 `tweets <- search_tweets(
+
   "Chowkidar OR #MainBhiChowkidar OR #Chowkidar", n = 100000, type = "mixed", retryonratelimit = TRUE, lang = "en")
+
 x_tweets <- as_tibble(tweets)
+
 x <- x_tweets %>%
-  clean_names()
+
+clean_names()
+
 write_as_csv(tweets, "twitter_data.csv")
+
 x <- read_csv("twitter_data.csv", col_names = TRUE)`
 
