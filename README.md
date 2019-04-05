@@ -1,5 +1,5 @@
 # gov_1005_final_project
-# Final Project for Gov 1005: Analysis of the 2019 Indian Lok Sabha Elections Campaigns
+__Final Project for Gov 1005: Analysis of the 2019 Indian Lok Sabha Elections Campaigns__
 ## A Note on the Data
 ### What is the data?
 A mixed sample of the most popular and most recent **one hundred and eight thousand tweets** in English from the last three days (as of 20 March, 2019, 10:07 pm EST) on the Bharatiya Janata Party's #MainBhiChowkidar campaign.
