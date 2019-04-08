@@ -1,5 +1,4 @@
-# gov_1005_final_project
-__Final Project for Gov 1005: Analysis of the 2019 Indian Lok Sabha Elections Campaigns__
+# Final Project for Gov 1005: Analysis of the 2019 Indian Lok Sabha Elections Campaigns
 ## A Note on the Data
 The csv file: https://drive.google.com/file/d/1cSUnWV-dQK0XgBfJGkhHJNX_6uc1JDgK/view?usp=sharing
 
