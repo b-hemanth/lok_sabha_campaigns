@@ -12,14 +12,15 @@ library(tidyverse)
 library(readr)
 library(ggthemes)
 library(ggplot2)
+library(lubridate)
 # temp <- read_csv("twitter_data.csv") %>%
-#   select(created_at, text, favourites_count, retweet_count) 
+#   select(created_at, text, favourites_count, retweet_count)
 # temp2 <- temp %>%
 #   arrange(desc(favourites_count)) %>%
-#   top_n(50)
+#   top_n(1000)
 # write_csv(temp2, "data.csv")
 
-data <- read_csv(
+orig <- read_csv(
   "data.csv",
   cols(
     created_at = col_datetime(format = ""),
@@ -30,6 +31,9 @@ data <- read_csv(
   col_names = TRUE
   )
 
+data <- orig
+data <- data %>% 
+  mutate(created_at = hour(created_at))
 # Define UI for application that draws a histogram
 ui <- fluidPage(
    
@@ -59,41 +63,41 @@ ui <- fluidPage(
 server <- function(input, output) {
    
    output$rtPlot <- renderPlot({
-     region_subset <- data %>% filter(!is.na(text), created_at == input$text)
+     region_subset <- data %>% filter(!is.na(text), text == input$text)
      ggplot(region_subset, aes(x = created_at, y = retweet_count)) +
        geom_col() +
        geom_point() +
        theme_wsj() + 
        scale_color_wsj() +
        labs(
-         title = "When the BJP IT Cells Strike Twitter* —
+         title = "When the IT Cells Strike Twitter* —
          Retweet Count for Selected Time",
          subtitle = "The Indian elections see bot tweeting as a tool to 
          make messages popular: when in the day were these bots deadliest?",
          source = "Data scraped from Twitter; 
          *represents a particular sample, 
          details @https://github.com/b-hemanth/lok_sabha_campaigns",
-         x = "Time and Day",
+         x = "Hour of the Day",
          y = "Retweets"
        )
    })
    
    output$favtPlot <- renderPlot({
-     region_subset <- data %>% filter(!is.na(text), created_at == input$text)
+     region_subset <- data %>% filter(!is.na(text), text == input$text)
      ggplot(region_subset, aes(x = created_at, y = favourites_count)) +
        geom_col() +
        geom_point() +
        theme_wsj() + 
        scale_color_wsj() +
        labs(
-         title = "When the BJP IT Cells Strike Twitter* —
+         title = "When the IT Cells Strike Twitter* —
          Favourites Count for Selected Time",
          subtitle = "The Indian elections see bot tweeting as a tool to 
          make messages popular: when in the day were these bots deadliest?",
          source = "Data scraped from Twitter; 
          *represents a particular sample, 
          details @https://github.com/b-hemanth/lok_sabha_campaigns",
-         x = "Time and Day",
+         x = "Hour of the Day",
          y = "Favourites"
        )
    })
