@@ -21,7 +21,16 @@ library(ggplot2)
 #   top_n(50)
 # write_csv(temp2, "data.csv")
 
-data <- read_csv("data.csv")
+data <- read_csv(
+  "data.csv",
+  cols(
+    created_at = col_datetime(format = ""),
+    text = col_character(),
+    favourites_count = col_double(),
+    retweet_count = col_double()
+  ),
+  col_names = TRUE
+  )
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
