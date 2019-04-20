@@ -12,12 +12,10 @@ library(tidyverse)
 library(readr)
 library(ggthemes)
 library(ggplot2)
-# temp <- read_csv("twitter_data.csv") %>% 
-#   select(created_at, text, favourites_count, retweet_count) %>% 
-#   # Convert text to lower text
-#   mutate(text = tolower(text))
-# temp2 <- temp %>% 
-#   arrange(desc(favourites_count)) %>% 
+# temp <- read_csv("twitter_data.csv") %>%
+#   select(created_at, text, favourites_count, retweet_count) 
+# temp2 <- temp %>%
+#   arrange(desc(favourites_count)) %>%
 #   top_n(50)
 # write_csv(temp2, "data.csv")
 
@@ -41,8 +39,8 @@ ui <- fluidPage(
    # Sidebar with a slider input for number of bins 
    sidebarLayout(
       sidebarPanel(
-         radioButtons("time",
-                     "Time Posted:", unique(data$created_at))
+         radioButtons("text",
+                     "Fake Tweet:", unique(data$text))
       ),
       
       # Show a plot of the generated distribution
@@ -61,7 +59,7 @@ ui <- fluidPage(
 server <- function(input, output) {
    
    output$rtPlot <- renderPlot({
-     region_subset <- data %>% filter(!is.na(created_at), created_at == input$created_at)
+     region_subset <- data %>% filter(!is.na(text), created_at == input$text)
      ggplot(region_subset, aes(x = created_at, y = retweet_count)) +
        geom_col() +
        geom_point() +
@@ -81,7 +79,7 @@ server <- function(input, output) {
    })
    
    output$favtPlot <- renderPlot({
-     region_subset <- data %>% filter(!is.na(created_at), created_at == input$created_at)
+     region_subset <- data %>% filter(!is.na(text), created_at == input$text)
      ggplot(region_subset, aes(x = created_at, y = favourites_count)) +
        geom_col() +
        geom_point() +
