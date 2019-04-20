@@ -41,7 +41,7 @@ ui <- fluidPage(
    # Sidebar with a slider input for number of bins 
    sidebarLayout(
       sidebarPanel(
-         sliderInput("time",
+         radioButtons("time",
                      "Time Posted:", unique(data$created_at))
       ),
       
